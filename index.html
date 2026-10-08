@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang='ru'>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="/src/style.css" rel="stylesheet">
+        <title>RSS-агрегатор</title>
+    </head>
+    <body>
+        <section class="aggregator bg-white dark:bg-gray-800">
+          <div class="">
+            <h1 class="display-3 mb-0">RSS агрегатор</h1>
+            <p class="dark:text-white">Начните читать RSS сегодня! Это легко, это красиво.</p>
+          </div>
+          <div>
+            <form>
+              <label for="rss-link">
+                <span class="dark:text-white">Ссылка RSS</span>
+              </label>
+              <input type="text" class="flex-1" id="rss-link" name="rss-link" placeholder="Ссылка RSS" required>
+              <button type="submit" class="bg-sky-500 hover:bg-sky-700 sm:grid-cols-3">
+                <span>Добавить</span>
+              </button>
+            </form>
+            <p class="dark:text-white">Пример: http://lorem-rss.hexlet.app/feed</p>
+          </div>
+          <div class="message">
+            <div class="status"></div>
+          </div>
+        </section>
+        <section class="posts">
+          <h2>Посты</h2>
+          <ul class="posts-list"></ul>
+        </section>
+        <section class="feeds">
+          <h2>Фиды</h2>
+          <div class="feeds-list"></div>
+        </section>
+        <script type="module" src="/src/main.js"></script>
+    </body>
+</html>

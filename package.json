@@ -1,0 +1,28 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![hexlet-check](https://github.com/AlbertSyberia/frontend-project-11/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/AlbertSyberia/frontend-project-11/actions)",
+  "homepage": "https://github.com/AlbertSyberia/frontend-project-11#readme",
+  "bugs": {
+    "url": "https://github.com/AlbertSyberia/frontend-project-11/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertSyberia/frontend-project-11.git"
+  },
+  "author": "AlbertSyberia",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/vite": "^4.3.3",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.4"
+  }
+}
