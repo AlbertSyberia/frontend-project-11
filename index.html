@@ -7,24 +7,24 @@
     <title>RSS-агрегатор</title>
   </head>
   <body class="bg-gray-50 text-gray-800">
+  <button class="language-switcher absolute px-4 py-2 bg-[#1a1a2e] text-white p-10 rounded hover:bg-gray-700 transition">RU</button>
 
     <section class="handler bg-[#1a1a2e] text-white p-10">
 
       <div class="max-w-5xl mx-auto px-4">
-
-        <h1 class="text-4xl font-bold mb-2">RSS агрегатор</h1>
-        <p class="text-gray-400 mb-6">Начните читать RSS сегодня! Это легко, это красиво.</p>
+        <h1 class="title text-4xl font-bold mb-2">RSS агрегатор</h1>
+        <p class="subtitle text-gray-400 mb-6">Начните читать RSS сегодня! Это легко, это красиво.</p>
         
         <div class="flex flex-col md:flex-row gap-4 items-center">
           <form class=" rss-form flex flex-col md:flex-row gap-2 items-center w-full">
-            <label for="rss-input" class="text-sm font-medium text-white whitespace-nowrap">Ссылка RSS</label>
+            <label for="rss-input" class="label-inut text-sm font-medium text-white whitespace-nowrap">Ссылка RSS</label>
             <input type="text" id="rss-input" class="text-gray-700 flex-1 px-3 py-2 rounded border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ссылка RSS" />
-            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Добавить</button>
+            <button type="submit" class="add px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Добавить</button>
           </form>
         </div>
 
         <div class="mt-4">
-          <p class="text-gray-300">Пример: https://lorem-rss.hexlet.app/feed</p>
+          <p class="example text-gray-300">Пример: https://lorem-rss.hexlet.app/feed</p>
         </div>
 
         <div class="message mt-4">
@@ -37,11 +37,11 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <div class="posts bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h2 class="text-xl font-bold mb-4 text-gray-800">Посты</h2>
+          <h2 class="posts-heading text-xl font-bold mb-4 text-gray-800">Посты</h2>
         </div>
 
         <div class="feeds bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
-          <h2 class="text-lg font-bold mb-3 text-gray-800">Фиды</h2>
+          <h2 class="feeds-heading text-lg font-bold mb-3 text-gray-800">Фиды</h2>
         </div>
 
       </div>

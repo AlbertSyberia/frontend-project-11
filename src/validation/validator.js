@@ -1,20 +1,23 @@
-import { string } from 'yup'
-import { state } from '../view.js'
+import { string, setLocale } from 'yup'
+import { formState } from './view.js'
 
-const rssSchema = string()
-  .url()
-  .required()
+setLocale({
+  mixed: {
+    default: () => ({ key:'message.invalidUrl'}),
+    required: () => ({ key: 'message.empty' }),
+  },
+  string: {
+    url: () => ({ key: 'message.invalidUrl' }),
+  }
+})
+
+const rssSchema = string().url().required()
 
 export const validate = async (inputValue) => {
-  state.formError = ''
+  formState.formError = ''
 
-  if (inputValue.trim().length === 0) {
-    state.formError = 'Не должно быть пустым'
-    return false
-  }
-
-  if (state.feeds.includes(inputValue.trim())) {
-    state.formError = 'Такой RSS уже добавлен'
+  if (formState.url.includes(inputValue.trim())) {
+    formState.formError = 'message.including'
     return false
   }
 
@@ -22,8 +25,15 @@ export const validate = async (inputValue) => {
     await rssSchema.validate(inputValue.trim())
     return true
   }
-  catch {
-    state.formError = 'Ссылка должна быть валидным URL'
-    return false
+  catch (error){
+    if(error.name === 'ValidationError'){
+      const err = error.errors[0]
+      if (typeof err === 'object') {
+        formState.formError = err.key
+      } else {
+          formState.formError = 'message.invalidUrl'
+        }
+      return false
+    }
   }
 }

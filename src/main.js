@@ -1,3 +1,3 @@
-import { validator } from './view.js'
+import { validator } from './validation/view.js'
 
 validator()
