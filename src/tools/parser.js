@@ -5,13 +5,22 @@ export function parseRss (xmlString) {
 
   if (xmlErrors) return {error: 'message.parseError'}
 
-  const title = xmlDoc.querySelector('title').textContent.trim() || ''
-  const description = xmlDoc.querySelector('description').textContent.trim() || ''
+  const title = xmlDoc.querySelector('title')?.textContent?.trim() || ''
+  const description = xmlDoc.querySelector('description')?.textContent?.trim() || ''
 
   const items = Array.from(xmlDoc.querySelectorAll('item'))
 
   return { 
-    posts: [], 
+    feed: { 
+      title: title, 
+      description: description
+    },
+    posts: items.map(item => ( 
+       {
+       title: item.querySelector('title')?.textContent?.trim() || '',
+       link: item.querySelector('link')?.textContent?.trim() || '',
+       }
+      )
+    )
   }
-
 }

@@ -12,5 +12,5 @@ import { loadFeed } from './view/feeds.js'
 
   form(i18nInstance)
   feedback(i18nInstance)
-  //loadFeed()
+  loadFeed(i18nInstance)
 })()
