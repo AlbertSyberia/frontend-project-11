@@ -7,15 +7,24 @@ export async function loadFeed() {
   const divFeeds = allContent.querySelector('.feeds')
   const stateFeeds = state.feeds
 
-  stateFeeds.map(async (feed) => {
+  for (feed of stateFeeds){
     const url = feed.url
-    const request = await getPage(url)
+    try { 
+      const request = await getPage(url)
+      return request
+    } catch (e) {
+      state.form.error = e
+    }
+    
     try { 
       const response = parseRss(request)
       return response
     } catch (e) {
       state.form.error = e
     }
+  }
+
     
+   //allContent.classList.replace('invisible', 'visible')
   })
 }
