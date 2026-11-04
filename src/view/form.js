@@ -1,4 +1,4 @@
-import { validate } from '../tools/validator.js'
+import { validate } from '../utils/validator.js'
 import { state } from '../state.js'
 
 export async function form(i18nInstance) {
@@ -16,7 +16,7 @@ const errorKey = await validate(input.value)
     state.form.error = errorKey
   } 
   else {
-      const newFeed = { id: crypto.randomUUID(), url: input.value.trim() }
+      const newFeed = { id: crypto.randomUUID(), url: input.value.trim() } 
       state.feeds = [...state.feeds, newFeed]
       input.value = ''
       input.focus()

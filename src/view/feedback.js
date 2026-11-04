@@ -11,6 +11,7 @@ export function feedback(i18nInstance) {
 
     const error = state.form.error
 
+
     if (!input || !message) return 
 
     message.replaceChildren()

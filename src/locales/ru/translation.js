@@ -16,9 +16,11 @@ export default {
   message: {
     urlAlreadyExists: 'RSS уже существует',
     invalidUrl: 'Ссылка должна быть валидным URL',
-    parseError: 'Ресурс не содержит валидный RSS',
-    success: 'RSS успешно загружен',
     empty: 'Не должно быть пустым',
     including: 'Такой RSS уже добавлен',
+    
+    parseError: 'Ресурс не содержит валидный RSS',
+    networkError: 'Ошибка сети',
+    success: 'RSS успешно загружен',
   },
 }

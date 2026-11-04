@@ -6,4 +6,10 @@ export const state = proxy({
   },
   feeds: [],
   posts: [],
+  feedErr: {
+    error: '',
+    loading: false,
+  },
 })
+
+window.__state = state

@@ -16,9 +16,11 @@ export default {
   message: {
     urlAlreadyExists: 'RSS already exists',
     invalidUrl: 'The link must be a valid URL',
-    parseError: 'The resource does not contain a valid RSS feed',
-    success: 'The RSS has been successfully loaded',
     empty: 'It shouldn’t be empty',
     including: 'This RSS has already been added',
+
+    parseError: 'The resource does not contain a valid RSS feed',
+    networkError: 'Network error',
+    success: 'The RSS has been successfully loaded',
   },
 }
