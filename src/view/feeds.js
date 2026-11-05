@@ -37,7 +37,7 @@ async function loadFeed() {
     }
 
     for (const post of result.posts) {
-      const id = guid || link
+      const id = post.guid || post.link
 
       const newPost = { 
         id: id,
@@ -55,38 +55,85 @@ async function loadFeed() {
   state.posts = updatedPosts
 }
 
- const render = (i18nInstance) => {
-  const message = document.querySelector('.message')
-  const allContent = document.querySelector('.content')
-  if (!message || !allContent) return
+ function renderFeeds (i18nInstance) {
+   const divFeeds = document.querySelector('.feeds')
+   const feeds = state.feeds
 
-  message.replaceChildren()
-  const err = state.feedErr.error
+   if (!divFeeds) return
+   divFeeds.innerHTML = ''
 
-  if (err) {
-    const div = document.createElement('div')
-    const p = document.createElement('p')
-    p.textContent = i18nInstance.t(err)
-    p.classList.add('mt-4', 'text-red-500')
-    div.appendChild(p)
-    message.appendChild(div)
+   if(feeds.length > 0){
+     const h2 = document.createElement('h2')
+     h2.classList.add('feeds-heading', 'text-xl', 'font-bold', 'mb-4', 'text-gray-800')
+     h2.textContent = i18nInstance.t('titles.feedsTitle')
+     divFeeds.appendChild(h2)
+
+     const ul = document.createElement('ul')
+     feeds.forEach(feed => {
+       const li = document.createElement('li')
+       const h3 = document.createElement('h3')
+       const p = document.createElement('p')
+
+       h3.textContent = feed.title
+       p.textContent = feed.description
+
+       li.appendChild(h3)
+       li.appendChild(p)
+       ul.appendChild(li)
+     })
+     divFeeds.appendChild(ul)
+   }
   }
 
-  const divFeeds = allContent.querySelector('.feeds')
-  if (!divFeeds) return
-
-  allContent.classList.replace('invisible', 'visible')
-  divFeeds.innerHTML = ''
-
-  const h2 = document.createElement('h2')
-  h2.classList.add('feeds-heading', 'text-lg', 'font-bold', 'mb-3', 'text-gray-800')
-  h2.textContent = i18nInstance.t('titles.feedsTitle')
-  divFeeds.appendChild(h2)
-
+function renderError(i18nInstance) {
+  const err = state.feedErr.error
+  const message = document.querySelector('.message')
+  
+  if (!message) return
+  message.innerHTML = ''
+  
+  if(err) {
+    const p = document.createElement('p')
+    p.classList.add('mt-4', 'text-red-500')
+    p.textContent = i18nInstance.t(state.feedErr.error)
+    
+    message.appendChild(p)
+  }
 }
 
-export async function loadAndRenderFeeds(i18nInstance) {
+function renderPosts(i18nInstance) {
+   const divPost = document.querySelector('.posts')
+   const posts = state.posts
+
+   if (!divPost) return
+   divPost.innerHTML = ''
+
+   if(posts.length > 0){
+     const h2 = document.createElement('h2')
+     h2.classList.add('posts-heading', 'text-xl', 'font-bold', 'mb-4', 'text-gray-800')
+     h2.textContent = i18nInstance.t('titles.postsTitle')
+     divPost.appendChild(h2)
+
+     const ul = document.createElement('ul')
+     posts.forEach(post => {
+       const li = document.createElement('li')
+       const a = document.createElement('a')
+
+       a.textContent = post.title
+       a.href = post.link
+
+       li.appendChild(a)
+       ul.appendChild(li)
+     })
+     divPost.appendChild(ul)
+   }
+  }
+
+subscribe(state.feeds, loadAndRenderFeeds)
+
+async function loadAndRenderFeeds(i18nInstance){
   await loadFeed()
-  subscribe(state.feedErr, render)
-  render(i18nInstance)
+  renderFeeds(i18nInstance)
+  renderPosts(i18nInstance)
+  renderError(i18nInstance)
 }
