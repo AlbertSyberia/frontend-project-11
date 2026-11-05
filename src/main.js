@@ -2,7 +2,7 @@ import i18n from 'i18next'
 import resources from './locales/index.js'
 import { form } from './view/form.js'
 import { feedback } from './view/feedback.js'
-import { loadAndRenderFeeds } from './view/feeds.js'
+import { initRssView } from './view/feeds.js'
 
 async function initialization(){
   
@@ -12,7 +12,7 @@ async function initialization(){
 
   form(i18nInstance)
   feedback(i18nInstance)
-  await loadAndRenderFeeds(i18nInstance)
+  initRssView(i18nInstance)
 }
 
 initialization()

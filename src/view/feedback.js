@@ -2,36 +2,34 @@ import { subscribe } from 'valtio/vanilla'
 import { state } from '../state.js'
 
 export function feedback(i18nInstance) {
-  const t = i18nInstance.t
-
   const input = document.querySelector('#rss-input')
   const message = document.querySelector('.message')
 
   const render = () => {
+     if (!input || !message) return
 
-    const error = state.form.error
+  const formError = state.form.error
+  const feedError = state.feedErr.error
 
+  message.replaceChildren()
 
-    if (!input || !message) return 
+  const shownError = formError || feedError
 
-    message.replaceChildren()
-
-    if (error) {
-      const div = document.createElement('div')
-      const p = document.createElement('p')
-      p.textContent = t(error)
-      p.classList.add('mt-4', 'text-red-500')
-      div.appendChild(p)
-      message.appendChild(div)
-
+  if (shownError) {
+    const p = document.createElement('p')
+    p.textContent = i18nInstance.t(shownError)
+    p.classList.add('mt-4', 'text-red-500')
+    message.appendChild(p)
       input.classList.add('outline-3', 'outline-offset-3', 'outline-red-700')
-    }
-    else {
+    } else {
+      const p = document.createElement('p')
+      p.textContent = i18nInstance.t('message.success')
+      p.classList.add('md-0', 'small', 'text-success', 'text-green-500')
+      message.appendChild(p)
       input.classList.remove('outline-3', 'outline-offset-3', 'outline-red-700')
     }
   }
 
-  subscribe(state.form, render)
-
+  subscribe(state, render)
   i18nInstance.on('languageChanged', render)
 }

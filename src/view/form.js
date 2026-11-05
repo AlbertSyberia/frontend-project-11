@@ -1,5 +1,6 @@
 import { validate } from '../utils/validator.js'
 import { state } from '../state.js'
+import { loadFeed } from './feeds.js'
 
 export async function form(i18nInstance) {
   const form = document.querySelector('.rss-form')
@@ -20,6 +21,8 @@ const errorKey = await validate(input.value)
       state.feeds = [...state.feeds, newFeed]
       input.value = ''
       input.focus()
+
+      await loadFeed()
 }
 
   })
