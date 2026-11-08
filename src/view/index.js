@@ -8,11 +8,10 @@ import { renderPosts } from './renderPosts.js'
 export const initView  = async () => {
   
   const i18nInstance = i18n.createInstance()
-
   await i18nInstance.init({ lng: 'ru', debug: false, resources })
 
-  renderError(i18nInstance)
   renderInit(i18nInstance)
+  renderError(i18nInstance)
   renderFeeds(i18nInstance)
   renderPosts(i18nInstance)
 }

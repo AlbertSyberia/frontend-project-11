@@ -1,11 +1,8 @@
-import { form } from './view/form.js'
-import { initView } from './view/render.js'
-import { loadFeed } from './view/feeds.js'
+import { initView } from './view/index.js'
+import { loadFeed } from './logic/feeds.js'
+import { form } from './logic/form.js'
 
 
 initView()
 form()
 loadFeed()
-
-
-
