@@ -20,10 +20,12 @@ export const validate = async (inputValue) => {
     return 'message.empty'
   }
 
-  const existingFeed = state.feeds.some(feed => feed.url === trimmed)
-  if (existingFeed) {
-    return 'message.including'
-  }
+const isLoaded = (feed) => feed.title && !feed.error
+
+const existingFeed = state.feeds.some((feed) => feed.url === trimmed && isLoaded(feed))
+if (existingFeed) {
+  return 'message.including'
+}
 
   try {
     await rssSchema.validate(trimmed)

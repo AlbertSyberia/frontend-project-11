@@ -1,18 +1,11 @@
-import i18n from 'i18next'
-import resources from './locales/index.js'
 import { form } from './view/form.js'
-import { feedback } from './view/feedback.js'
-import { initRssView } from './view/feeds.js'
+import { initView } from './view/render.js'
+import { loadFeed } from './view/feeds.js'
 
-async function initialization(){
-  
-  const i18nInstance = i18n.createInstance()
 
-  await i18nInstance.init({ lng: 'ru', debug: false, resources })
+initView()
+form()
+loadFeed()
 
-  form(i18nInstance)
-  feedback(i18nInstance)
-  initRssView(i18nInstance)
-}
 
-initialization()
+
