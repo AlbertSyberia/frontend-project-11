@@ -21,6 +21,8 @@ export default {
     
     parseError: 'Ресурс не содержит валидный RSS',
     networkError: 'Ошибка сети',
+    loading: 'Загрузка фида…',
+    unknownError: 'Не удалось обработать запрос',
     success: 'RSS успешно загружен',
   },
 }

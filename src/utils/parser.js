@@ -1,26 +1,27 @@
-export function parseRss (xmlString) {
+export function parseRss(xmlString) {
   const parser = new DOMParser()
-  const xmlDoc = parser.parseFromString(xmlString, "application/xml")
+  const xmlDoc = parser.parseFromString(xmlString, 'application/xml')
   const xmlErrors = xmlDoc.querySelector('parsererror')
 
-  if (xmlErrors) return {error: 'message.parseError'}
+  if (xmlErrors) return { error: 'message.parseError' }
 
-  const title = xmlDoc.querySelector('title')?.textContent?.trim() || ''
-  const description = xmlDoc.querySelector('description')?.textContent?.trim() || ''
+  const channel = xmlDoc.querySelector('channel')
+  if (!channel) return { error: 'message.parseError' }
 
-  const items = Array.from(xmlDoc.querySelectorAll('item'))
+  const title = channel.querySelector('title')?.textContent?.trim() || ''
+  const description = channel.querySelector('description')?.textContent?.trim() || ''
 
-  return { 
-    feed: { 
-      title: title, 
-      description: description
+  const items = Array.from(channel.querySelectorAll('item'))
+
+  return {
+    feed: {
+      title,
+      description,
     },
-    posts: items.map(item => ( 
-       {
-       title: item.querySelector('title')?.textContent?.trim() || '',
-       link: item.querySelector('link')?.textContent?.trim() || '',
-       }
-      )
-    )
+    posts: items.map((item) => ({
+      guid: item.querySelector('guid')?.textContent?.trim() || '',
+      title: item.querySelector('title')?.textContent?.trim() || '',
+      link: item.querySelector('link')?.textContent?.trim() || '',
+    })),
   }
 }

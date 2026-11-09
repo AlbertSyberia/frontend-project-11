@@ -5,51 +5,60 @@ import { loadFeed } from './feeds.js'
 export async function form() {
   const formEl = document.querySelector('.rss-form')
   const input = formEl.querySelector('#rss-input')
-  const submitButton = formEl.querySelector('.add')
 
   formEl.addEventListener('submit', async (e) => {
     e.preventDefault()
 
-    state.form.error = ''
+    if (state.form.status === 'validating') return
 
+    state.form.status = 'validating'
+    state.form.error = null
     const url = input.value.trim()
-    const errorKey = await validate(url)
+    let errorKey
+    try {
+      errorKey = await validate(url)
+    } catch {
+      state.form.error = 'message.unknownError'
+      state.form.status = 'failed'
+      return
+    }
 
     if (errorKey) {
       state.form.error = errorKey
+      state.form.status = 'failed'
       return
     }
-
-    const existing = state.feeds.find((f) => f.url === url)
-    if (existing) {
-      if (existing.error || !existing.title) {
-        await loadFeed(existing.id)
-      } else {
-        state.form.error = 'message.including'
-      }
-      return
-    }
-
-    submitButton.disabled = true
-
-    const newFeed = {
-      id: crypto.randomUUID(),
-      url,
-      title: null,
-      description: null,
-      loading: true,
-      error: '',
-    }
-
-    state.feeds.push(newFeed)
-
-    input.value = ''
-    input.focus()
 
     try {
+      const existing = state.feeds.find((f) => f.url === url)
+      if (existing) {
+        if (existing.error) {
+          await loadFeed(existing.id)
+          state.form.status = existing.error ? 'failed' : 'success'
+        } else {
+          state.form.error = 'message.including'
+          state.form.status = 'failed'
+        }
+        return
+      }
+
+      const newFeed = {
+        id: crypto.randomUUID(),
+        url,
+        title: '',
+        description: '',
+        loading: false,
+        error: null,
+      }
+
+      state.feeds.push(newFeed)
+      input.value = ''
+      input.focus()
       await loadFeed(newFeed.id)
-    } finally {
-      submitButton.disabled = false
+      state.form.status = newFeed.error ? 'failed' : 'success'
+    } catch {
+      state.form.error = 'message.unknownError'
+      state.form.status = 'failed'
     }
   })
 }

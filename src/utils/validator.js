@@ -1,5 +1,4 @@
-import { string, setLocale } from 'yup'
-import { state } from '../state.js'
+import { string, setLocale, ValidationError } from 'yup'
 
 setLocale({
   mixed: {
@@ -20,23 +19,17 @@ export const validate = async (inputValue) => {
     return 'message.empty'
   }
 
-const isLoaded = (feed) => feed.title && !feed.error
-
-const existingFeed = state.feeds.some((feed) => feed.url === trimmed && isLoaded(feed))
-if (existingFeed) {
-  return 'message.including'
-}
-
   try {
     await rssSchema.validate(trimmed)
     return null
   } catch (error) {
-    if (error.name === 'ValidationError') {
+    if (error instanceof ValidationError) {
       const err = error.errors?.[0]
-      if (typeof err === 'object' && err.key) {
+      if (err && typeof err === 'object' && err.key) {
         return err.key
       }
+      return 'message.invalidUrl'
     }
-    return 'message.invalidUrl'
+    throw error
   }
 }

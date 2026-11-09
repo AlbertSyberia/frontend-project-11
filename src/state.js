@@ -2,14 +2,12 @@ import { proxy } from 'valtio/vanilla'
 
 export const state = proxy({
   form: {
-    error: '',
+    status: 'idle',
+    error: null,
   },
   feeds: [],
   posts: [],
-  feedErr: {
-    error: '',
-    loading: false,
+  ui: {
+    selectedPostId: null,
   },
 })
-
-window.__state = state

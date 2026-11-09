@@ -21,6 +21,8 @@ export default {
 
     parseError: 'The resource does not contain a valid RSS feed',
     networkError: 'Network error',
+    loading: 'Loading feed…',
+    unknownError: 'The request could not be processed',
     success: 'The RSS has been successfully loaded',
   },
 }
