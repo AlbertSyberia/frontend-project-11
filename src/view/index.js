@@ -8,6 +8,6 @@ export const initView = (i18nInstance) => {
   renderInit(i18nInstance)
   renderForm()
   renderError(i18nInstance)
-  renderFeeds(i18nInstance)
-  renderPosts(i18nInstance)
+  renderFeeds()
+  renderPosts()
 }

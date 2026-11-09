@@ -11,3 +11,5 @@ export const state = proxy({
     selectedPostId: null,
   },
 })
+
+window.state = state

@@ -20,35 +20,23 @@ const createFeedItem = (feed) => {
   return li
 }
 
-export function renderFeeds(i18nInstance) {
-  const divFeeds = document.querySelector('.feeds')
+export function renderFeeds() {
+  const feedsContainer = document.querySelector('.feeds-container')
+  const feedsList = document.querySelector('.feeds')
 
   const render = () => {
     const { feeds } = snapshot(state)
     const loadedFeeds = feeds.filter((feed) => feed.title)
 
-    if (!divFeeds) return
-
-    divFeeds.replaceChildren()
-
-    if (loadedFeeds.length === 0) {
-      divFeeds.classList.add('invisible')
-      return
-    }
-
-    divFeeds.classList.remove('invisible')
-
-    const h2 = document.createElement('h2')
-    h2.classList.add('feeds-heading', 'text-xl', 'font-bold', 'mb-4', 'text-gray-800')
-    h2.textContent = i18nInstance.t('titles.feedsTitle')
-    divFeeds.appendChild(h2)
+    feedsList.replaceChildren()
+    feedsList.classList.toggle('invisible', loadedFeeds.length === 0)
+    feedsContainer.classList.toggle('invisible', loadedFeeds.length === 0)
 
     const ul = document.createElement('ul')
     loadedFeeds.forEach((feed) => ul.appendChild(createFeedItem(feed)))
-    divFeeds.appendChild(ul)
+    feedsList.appendChild(ul)
   }
 
   subscribe(state, render)
   render()
-  i18nInstance.on('languageChanged', render)
 }

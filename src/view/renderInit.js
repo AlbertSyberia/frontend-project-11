@@ -11,6 +11,10 @@ export const renderInit = (i18nInstance) => {
     document.querySelector('.example').textContent = t('websiteInterface.example')
 
     document.querySelector('.label-input').textContent = t('websiteInterface.formPlaceholder')
+    
+    document.querySelector('.posts-heading').textContent = t('titles.postsTitle')
+    document.querySelector('.feeds-heading').textContent = t('titles.feedsTitle')
+
     input.placeholder = t('websiteInterface.formPlaceholder')
     form.querySelector('.add').textContent = t('buttons.add')
 
