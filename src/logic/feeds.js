@@ -28,24 +28,3 @@ export async function loadFeed(feed) {
 export async function updateFeeds() {
   await Promise.all(state.feeds.map((feed) => loadFeed(feed)))
 }
-
-
- export const startAutoUpdate = () => {
-  const run = async () => {
-    try {
-      await updateFeeds()
-    } catch (e) {
-      console.error('updateFeeds failed:', e)
-    }
-  }
-
-  const schedule = () => {
-    setTimeout(async () => {
-      await run()
-      schedule()
-    }, 5000)
-  }
-
-  run()
-  schedule()
-}
