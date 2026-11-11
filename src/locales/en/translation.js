@@ -8,6 +8,7 @@ export default {
   buttons: {
     add: 'Add',
     lan: 'RU',
+    view: 'Viewing',
   },
   titles: {
     postsTitle: 'Posts',

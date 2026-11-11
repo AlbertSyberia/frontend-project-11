@@ -7,4 +7,4 @@ import { startAutoUpdate } from './utils/update.js'
 await i18n.init({ lng: 'ru', debug: false, resources })
 initView(i18n)
 form()
-startAutoUpdate()
+//startAutoUpdate()

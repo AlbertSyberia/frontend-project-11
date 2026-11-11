@@ -8,6 +8,7 @@ export default {
   buttons: {
     add: 'Добавить',
     lan: 'RU',
+    view: 'Просмотр',
   },
   titles: {
     postsTitle: 'Посты',

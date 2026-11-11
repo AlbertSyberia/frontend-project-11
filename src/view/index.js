@@ -9,5 +9,5 @@ export const initView = (i18nInstance) => {
   renderForm()
   renderError(i18nInstance)
   renderFeeds()
-  renderPosts()
+  renderPosts(i18nInstance)
 }
