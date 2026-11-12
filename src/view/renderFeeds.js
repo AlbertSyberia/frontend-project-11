@@ -12,7 +12,7 @@ const createFeedItem = (feed) => {
 
   if (feed.description) {
     const description = document.createElement('p')
-    description.classList.add('m-0', 'small', 'text-black-50')
+    description.classList.add('m-0', 'block', 'small', 'text-black-50')
     description.textContent = feed.description
     li.appendChild(description)
   }

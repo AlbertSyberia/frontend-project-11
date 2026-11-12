@@ -3,7 +3,7 @@ export default {
     title: 'RSS агрегатор',
     subtitle: 'Начните читать RSS сегодня! Это легко, это красиво.',
     formPlaceholder: 'Ссылка RSS',
-    example: 'Пример: https://lorem-rss.hexlet.app/feed',
+    example: 'Пример: https://lorem-rss.hexlet.app/feed?unit=second',
   },
   buttons: {
     add: 'Добавить',

@@ -3,12 +3,12 @@ export default {
     title: 'RSS aggregator',
     subtitle: 'Start reading RSS today! It’s easy, it’s beautiful.',
     formPlaceholder: 'RSS link',
-    example: 'Example: https://lorem-rss.hexlet.app/feed',
+    example: 'Example: https://lorem-rss.hexlet.app/feed?unit=second',
   },
   buttons: {
     add: 'Add',
     lan: 'RU',
-    view: 'Viewing',
+    view: 'View',
   },
   titles: {
     postsTitle: 'Posts',
