@@ -19,14 +19,14 @@ export function renderPosts(i18nInstance) {
 
       a.textContent = post.title
       a.href = post.link
-      a.classList.add('text-lg', 'mr-70', 'font-bold', 'text-blue-500', 'hover:text-blue-700', 'active:text-gray-800')
+      a.classList.add('text-lg', 'font-bold', 'text-blue-500', 'hover:text-blue-700', 'active:text-gray-800')
 
       btn.textContent = i18nInstance.t('buttons.view')
       btn.classList.add('bg-transparent', 'hover:bg-blue-500', 'text-blue-700', 'font-semibold', 'hover:text-white', 'py-0.5', 'px-1', 'border', 'border-blue-500', 'hover:border-transparent', 'rounded')
 
       li.appendChild(a)
       li.appendChild(btn)
-      li.classList.add('mb-10')
+      li.classList.add('mb-6')
       list.appendChild(li)
     })
     postsList.appendChild(list)
