@@ -23,7 +23,8 @@ export function renderPosts(i18nInstance) {
 
       btn.textContent = i18nInstance.t('buttons.view')
       btn.classList.add('bg-transparent', 'hover:bg-blue-500', 'text-blue-700', 'font-semibold', 'hover:text-white', 'py-0.5', 'px-1', 'border', 'border-blue-500', 'hover:border-transparent', 'rounded')
-
+      btn.setAttribute('data-post-id', post.id)
+      
       li.appendChild(a)
       li.appendChild(btn)
       li.classList.add('mb-6')

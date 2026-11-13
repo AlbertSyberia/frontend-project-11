@@ -1,24 +1,30 @@
 import { state } from '../state.js'
 
 export function replaceFeedPosts(feedId, feedPosts) {
-  const previousPosts = new Map(
+  const previousSeen = new Map(
     state.posts
-      .filter((post) => post.feedId === feedId)
-      .map((post) => [post.id, post]),
+      .filter(p => p.feedId === feedId)
+      .map(p => [p.id, p.seen]),
   )
-  const posts = feedPosts.map((post) => {
+
+  const newPosts = feedPosts.map(post => {
     const id = `${feedId}:${post.guid || post.link || post.title}`
     return {
       id,
       feedId,
       title: post.title,
       link: post.link,
-      seen: previousPosts.get(id)?.seen || false,
+      seen: previousSeen.get(id) ?? false,
     }
   })
 
-  for (let index = state.posts.length - 1; index >= 0; index -= 1) {
-    if (state.posts[index].feedId === feedId) state.posts.splice(index, 1)
-  }
-  state.posts.push(...posts)
+  
+  state.posts = [
+    ...state.posts.filter(p => p.feedId !== feedId),
+    ...newPosts,
+  ]
 }
+
+function markPostSeen(postId) {} // пометить пост прочитанным;
+
+function findPostById(postId) {} // найти пост по id

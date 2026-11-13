@@ -9,7 +9,6 @@ export function renderForm() {
     const { status } = snapshot(state.form)
     const isValidating = status === 'validating'
     submitButton.disabled = isValidating
-    form.setAttribute('aria-busy', String(isValidating))
   }
 
   render()
