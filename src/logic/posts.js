@@ -13,6 +13,7 @@ export function replaceFeedPosts(feedId, feedPosts) {
       id,
       feedId,
       title: post.title,
+      description: post.description,
       link: post.link,
       seen: previousSeen.get(id) ?? false,
     }
@@ -25,6 +26,14 @@ export function replaceFeedPosts(feedId, feedPosts) {
   ]
 }
 
-function markPostSeen(postId) {} // пометить пост прочитанным;
 
-function findPostById(postId) {} // найти пост по id
+function findPostById(postId) {
+  return state.posts.find(post => post.id === postId) ?? null
+}
+
+export function markPostSeen(postId) {
+  const post = findPostById(postId)
+  if (post) {
+    post.seen = true
+  }
+}

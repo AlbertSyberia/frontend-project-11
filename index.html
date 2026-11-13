@@ -7,24 +7,27 @@
     <title>RSS-агрегатор</title>
   </head>
   <body class="bg-gray-50 text-gray-800">
+  <dialog class="postInfo"></dialog>
   <button class="language-switcher absolute px-4 py-2 bg-[#1a1a2e] text-white p-10 rounded hover:bg-gray-700 transition">RU</button>
 
     <section class="handler bg-[#1a1a2e] text-white p-10">
 
       <div class="max-w-5xl mx-auto px-4">
-        <h1 class="title text-4xl font-bold mb-2">RSS агрегатор</h1>
-        <p class="subtitle text-gray-400 mb-6">Начните читать RSS сегодня! Это легко, это красиво.</p>
+        <h1 class="title text-6xl mb-2">RSS агрегатор</h1>
+        <p class="subtitle text-1xl text-gray-400 mb-3">Начните читать RSS сегодня! Это легко, это красиво.</p>
         
-        <div class="flex flex-col md:flex-row gap-4 items-center">
-          <form class="rss-form flex flex-col md:flex-row gap-2 items-center w-full">
-            <label for="rss-input" class="label-input text-sm font-medium text-white ">Ссылка RSS</label>
-            <input type="text" id="rss-input" class="text-gray-700 flex-1 px-3 py-2 rounded border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ссылка RSS" />
-            <button type="submit" class="add px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Добавить</button>
+        <div class="flex flex-col gap-4">
+          <form class="rss-form flex flex-col w-full gap-2">
+            <label for="rss-input" class="label-input block text-sm font-medium text-white">Ссылка RSS</label>
+            <div class="flex gap-2 w-full">
+              <input type="text" id="rss-input" class="text-gray-700 flex-1 px-3 py-2 rounded border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Ссылка RSS" />
+              <button type="submit" class="add px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition whitespace-nowrap">Добавить</button>
+            </div>
           </form>
         </div>
 
-        <div class="mt-4">
-          <p class="example text-gray-300">Пример: https://lorem-rss.hexlet.app/feed?unit=second</p>
+        <div class="mt-2">
+          <p class="example text-gray-400">Пример: https://lorem-rss.hexlet.app/feed?unit=second</p>
         </div>
 
         <div class="message mt-4">
@@ -33,15 +36,15 @@
       </div>
     </section>
 
-    <section class="content max-w-7xl mx-auto py-8">
-      <div class="flex flex-col md:flex-row gap-6">
+    <section class="content max-w-5xl mx-auto py-8">
+      <div class="flex flex-col md:flex-row gap-10">
 
-        <div class="posts-container md:flex-[2] p-6 flex flex-col justify-between invisible">
+        <div class="posts-container md:flex-[2] flex flex-col justify-between">
           <h2 class="posts-heading text-xl font-bold mb-4 text-gray-800">Посты</h2>
           <div class="posts"></div>
         </div>
 
-        <div class="feeds-container md:flex-1 p-6 flex flex-col invisible">
+        <div class="feeds-container md:flex-1 flex flex-col">
           <h2 class="feeds-heading text-xl font-bold mb-4 text-gray-800">Фиды</h2>
           <div class="feeds"></div>
         </div>

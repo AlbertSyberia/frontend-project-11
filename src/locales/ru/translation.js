@@ -9,6 +9,8 @@ export default {
     add: 'Добавить',
     lan: 'RU',
     view: 'Просмотр',
+    close: 'Закрыть',
+    read: 'Читать полностью'
   },
   titles: {
     postsTitle: 'Посты',

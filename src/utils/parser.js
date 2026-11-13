@@ -21,6 +21,7 @@ export function parseRss(xmlString) {
     posts: items.map((item) => ({
       guid: item.querySelector('guid')?.textContent?.trim() || '',
       title: item.querySelector('title')?.textContent?.trim() || '',
+      description: item.querySelector('description')?.textContent?.trim() || '',
       link: item.querySelector('link')?.textContent?.trim() || '',
     })),
   }

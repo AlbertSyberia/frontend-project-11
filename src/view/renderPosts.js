@@ -27,7 +27,7 @@ export function renderPosts(i18nInstance) {
       
       li.appendChild(a)
       li.appendChild(btn)
-      li.classList.add('mb-6')
+      li.classList.add('mb-6', 'flex', 'justify-between')
       list.appendChild(li)
     })
     postsList.appendChild(list)
